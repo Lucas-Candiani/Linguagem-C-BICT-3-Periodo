@@ -1,0 +1,15 @@
+/*
+4. Faça um programa em C que receba o salário de um funcionário, calcule
+e mostre o novo salário, sabendo-se que este sofreu um aumento de 25%.
+*/
+#include <stdio.h>
+int main()
+{
+  float salario, aumento, salario_final;
+  printf("Insira o valor do salário base: ");
+  scanf("%f", &salario);
+  aumento = 0.25;
+  salario_final = (salario*aumento) + salario;
+  printf("O salário final foi de %2.f", salario_final);
+  return 0;
+}
