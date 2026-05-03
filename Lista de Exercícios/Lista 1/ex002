@@ -1,0 +1,17 @@
+/* 
+2 - Escreva um programa em C que receba três notas e seus respectivos pesos, calcule e
+mostre a média ponderada.
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+int main() {
+  float nota1, nota2, nota3, peso1, peso2, peso3, res;
+  printf("Insira o valor da nota e de seu peso respectivamente");
+  scanf("%f %f,",&nota1,&peso1);
+  scanf("%f %f,",&nota2,&peso2);
+  scanf("%f %f,",&nota3,&peso3);
+  res = ((nota1*peso1)+(nota2*peso2)+(nota3*peso3))/3;
+  printf("A media ponderada deu %.2f ", res);
+  return 0;
+}
