@@ -1,0 +1,13 @@
+#include <stdio.h>
+#include <stdlib.h>
+int main() {
+  int n1,n2,n3,n4,res;
+  printf("Vamos somar 4 valores inteiros! \n");
+  scanf("%i",&n1);
+  scanf("%i",&n2);
+  scanf("%i",&n3);
+  scanf("%i",&n4);
+  res = n1 + n2 + n3 + n4;
+  printf("A resposta final: %i", res);
+  return 0;
+}
