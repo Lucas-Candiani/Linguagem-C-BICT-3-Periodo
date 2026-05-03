@@ -1,0 +1,18 @@
+/*
+5. Faça um programa em C que receba o salário de um funcionário e o
+percentual de aumento, calcule e mostre o valor do aumento e o novo
+salário.
+*/
+#include <stdio.h>
+int main()
+{
+  float salario, aumento, salario_final;
+  printf("Insira o valor do salário base: ");
+  scanf("%f", &salario);
+  printf("Qual será o percentual do aumento? (Adicione em decimal| ex:
+  0.1): ");
+  scanf("%f", &aumento);
+  salario_final = (salario*aumento) + salario;
+  printf("O salário final foi de %2.f", salario_final);
+return 0;
+}
