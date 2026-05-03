@@ -1,0 +1,55 @@
+/*1) Dois números são considerados AMIGÁVEIS se um deles corresponder à 
+soma dos divisores (exceto o próprio número) do outro. 
+● Por exemplo: vamos analisar os números 8 e 10. 
+● Os divisores de 8 são: 1, 2 e 4, resultando em soma igual a 7. 
+● Já os divisores de 10 são: 1, 2 e 5, resultando em soma igual a 8. 
+● Assim, como a soma dos divisores de 10 (exceto ele próprio) 
+resulta em 8, pode-se dizer que os números 10 e 8 são amigáveis. 
+Criar um programa que receba dois números inteiros quaisquer e 
+determine se são amigáveis ou não. */
+#include <stdio.h>
+
+int main()
+{
+    int n1, n2;
+    int soma1 = 0, soma2 = 0 ;
+    int c, c2;
+    
+    //Coletando os 2 valores
+    printf("Informe o primeiro valor: ");
+    scanf("%i", &n1);
+    printf("Informe o segundo valor: ");
+    scanf("%i", &n2);
+
+    /* 
+    Trabalhar para descobrir quais são os divisores: 
+    Criei a variavel c para que ela eleve o contador até chegar no valor informado e eu jogo
+    o valor de c pra dentro da soma1 para que agrupando tudo eu tenha, no fim, a soma dos divisores
+    */
+//----------------------------------------------------------------------------------------------//
+    for(c = 1; c<n1; c +=1){
+        if((n1 % c)==0){
+            //printf("num1: \n%i", c);
+            soma1 += c;
+            
+        }
+    }
+//-------Agora vou repetir para o segundo valor, afinal, o programa não pede especificação de ordem----//
+    for(c2 = 1; c2<n2; c2 +=1){
+        if((n2 % c2)==0){
+            soma2 += c2;
+        }
+    }
+    
+//------Agora que eu tenho a soma dos divisores de ambos, vou verificar se são ou não amigáveis----//
+   
+   if(soma1 == n2 || soma2 == n1){
+       printf("\n |-------| Os valores sao AMIGÁVEIS! =) |-------|");
+   } else {
+       printf("\n |-------| Os valores NAO são AMIGÁVEIS! =( |-------|");
+   }
+   
+    
+    
+    return 0;
+}
