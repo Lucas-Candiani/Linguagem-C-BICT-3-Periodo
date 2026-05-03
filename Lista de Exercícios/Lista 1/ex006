@@ -1,0 +1,19 @@
+/*
+12. Faça um programa em C que pergunta um valor em metros e imprime o
+correspondente em decímetros, centímetros e milímetros
+*/
+#include <stdio.h>
+int main()
+{
+  float valor_m, valor_dm, valor_cm, valor_mm;
+  printf("Insira um valor: ");
+  scanf("%f", &valor_m);
+  valor_dm = valor_m*10;
+  valor_cm = valor_m*100;
+  valor_mm = valor_m*1000;
+  
+  printf("Que bacana, o valor %2.f dado esta em metros\n| %2.f é seu valor
+  em decimetros\n| %2.f é seu valor em centimetros\n| %2.f é seu valor em
+  milimetros", valor_m, valor_dm, valor_cm, valor_mm);
+  return 0;
+}
