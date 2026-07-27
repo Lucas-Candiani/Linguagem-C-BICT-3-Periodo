@@ -1,0 +1,46 @@
+/*
+ 1) Dada uma matriz de ordem 4x3 contendo valores numéricos reais. Faça 
+um programa que calcule e exiba a soma dos números positivos e a 
+soma dos números negativos.
+*/
+#include <stdio.h>
+
+int main()
+{
+    
+    int mat[4][3]= { {-1,-2,-3},{-4,1,2},{3,4,5},{6,7,8} };
+    int soma_p=0, soma_n=0;
+    printf("| Imprimindo Matriz: \n");
+
+/*Notas
+    Observe que o "j" fica responsável por mudar a coluna da matriz e o "i" é o guia
+para as casas de cada linha da matriz. 
+
+*/    
+    
+//>>>>>>>>>>> Imprimindo a matriz <<<<<<<<<<<<//
+    for(int j=0; j<4; j++){
+        for(int i=0; i<3; i++){
+            printf("-> %i", mat[j][i]);
+        }
+        printf("\n");
+    }
+
+//>>>>>>>>>>> Somando os termos <<<<<<<<<<<<//
+
+    for(int j=0; j<4; j++){
+        for(int i=0; i<3; i++){
+            if(mat[j][i]>0){
+                soma_p += mat[j][i];
+            } else {
+                soma_n += mat[j][i];
+            }
+        }
+    }
+
+    printf("| A soma dos valores negativos é: %i \n |", soma_n);
+    printf("| A soma dos valores positivos é: %i \n |", soma_p);
+    
+
+    return 0;
+}
