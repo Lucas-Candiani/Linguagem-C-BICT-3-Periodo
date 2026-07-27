@@ -1,0 +1,148 @@
+/*
+Desafio 1) Implemente um programa em linguagem C que registre informações
+de cinco estudantes em três vetores distintos:
+• Matrículas dos estudantes (códigos identificadores)
+• Notas finais (valores entre 0 e 100)
+• Quantidade de faltas durante o semestre
+Após inserir os dados, o programa deve:
+-----------------------------------------------------------------
+a) Solicitar uma nota de corte ao usuário. Em seguida, exibir dois relatórios:
+i. Um com as matrículas e notas dos estudantes com nota menor ou
+igual à nota de corte;
+ii. Outro com as matrículas e notas dos estudantes com nota superior
+à nota de corte. Caso não haja estudantes em alguma das
+categorias, o programa deve informar.
+-----------------------------------------------------------------
+b) Determinar a menor nota registrada, contar quantos estudantes tiveram
+essa nota e listar as matrículas correspondentes.
+c) Gerar um novo vetor contendo as matrículas dos estudantes que tenham
+faltado no máximo 5 vezes e tenham alcançado nota superior a 60,
+indicando bom desempenho com frequência regular.
+Se não houver nenhum estudante dentro desses critérios, mostrar mensagem
+informativa.
+*/
+#include <stdio.h>
+
+void ordenarVet(float vet[],int matri[], int falt[], int tamanho, int tam_falt){
+    int i, j;
+    float temp; // Variável auxiliar 
+    int temp_mat;
+    int temp_fal;
+    for (i = 0; i < tamanho - 1; i++) {
+        for (j = 0; j < tamanho - i - 1; j++) {
+            if (vet[j] > vet[j + 1]) {
+                temp = vet[j];
+                vet[j] = vet[j + 1];
+                vet[j + 1] = temp;
+                
+                // Troca as matrículas na mesma hora
+                temp_mat = matri[j];
+                matri[j] = matri[j + 1];
+                matri[j + 1] = temp_mat;
+                //Troca as frequências na mesma hora
+                temp_fal = falt[j];
+                falt[j]= falt[j+1];
+                falt[j+1]= temp_fal;
+                
+            }
+        }
+    }
+}
+
+int main()
+{
+    
+    int matricula[5]= {202601, 202602, 202603,202604,202605};
+    float notas[5]; //= {60, 64, 34, 83, 91};
+    int faltas[5]; //= {10,2,4,100,4};
+    
+    float n_corte; //} Nota de corte
+    
+    int qtdMaior=0, qtdMenor=0; //} Variáveis para validar os casos
+    int desempenho=0;           //}
+    
+    int i;
+//============================= Coleta de dados ===================================//      
+    for(i=0; i<5; i++){
+        printf("| Insira a nota final do estudante de matrícula: %i \n|(0 a 100): ", matricula[i]);
+        scanf("%f", &notas[i]);
+        printf("\n| Insira a quantidade de faltas: \n|(0 a 180): ");
+        scanf("%d", &faltas[i]);
+        printf("\n| Informações Cadastradas...\n");
+    }
+//============================= Objetivo a) ===================================//  
+    ordenarVet(notas,matricula,faltas, 5, 180); //Ordeno em ordem crescente somente para facilitar contas futuras
+    
+    for(int i=0; i<5; i++){
+        printf("%i ", matricula[i]);
+        printf("%.0f ", notas[i]);
+        printf("\n");
+    }
+
+    printf("| Insira uma nota de corte|(0 a 100): ");
+    scanf("%f", &n_corte);
+    
+//Antes eu verifico se há notas menores e maiores que a nota de corte.
+    for(int i=0; i<5; i++){
+        if(notas[i]<n_corte || notas[i]== n_corte){
+            qtdMenor+=1;
+        } else if(notas[i]>n_corte){
+            qtdMaior+=1;
+        }
+        if(notas[i]>60 && faltas[i]<=5){
+            desempenho += 1;
+        }
+    }
+    
+//Uma condição para menor e outra para maior. 
+    if(qtdMenor>0){
+        printf("\n|(i) Notas menores ou iguais a nota de corte\t|\n");
+        printf("\n|\tMatricula\t|\tnotas\t\t|\n");
+        for(i=0; i<5; i++){
+            if(notas[i]<n_corte || notas[i]==n_corte){
+                printf("\n|\t%i\t\t|\t%.2f\t\t|\n", matricula[i],notas[i]);
+            }
+        }    
+    } else {
+        printf("\n>>>>Não houveram notas menores ou iguais a nota de corte =)");
+    }
+    
+    if(qtdMaior>0){
+        printf("\n|(ii) Notas maiores que a nota de corte\t|\n");
+        printf("\n|\tMatricula\t|\tnotas\t\t|\n");
+        for(i=0; i<5; i++){
+            if(notas[i]>n_corte){
+                printf("\n|\t%i\t\t|\t%.2f\t\t|\n", matricula[i],notas[i]);
+            }
+        }
+    } else {
+        printf("\n>>>>Não houveram notas maiores que a nota de corte =(");
+    }
+    
+//============================= Objetivo b) ===================================//  
+
+//Como eu ordenei o vetor em ordem crescente, a menor nota já está na posição 0 
+//Basta verificar se a próxima casa do vetor também possui uma nota igual... 
+    printf("\n|Menor(es) nota(s)\t|\n");
+    for(i=0; i<5; i++){
+        if(notas[0]==notas[i]){
+            printf("\n|\t%i\t\t|\t%.2f\t\t|\n", matricula[i],notas[i]);
+        }
+    }
+//============================= Objetivo c) ===================================//  
+    int melhores[5];
+    //Se existir algum valor no critério de bom desempenho... vamos escrever na tela
+    if(desempenho>0){ 
+        printf("\n|Bom desempenho com frequência regular:\t|\n");
+        for(i=0; i<5; i++){
+            if(notas[i]>60 && faltas[i]<=5){
+                melhores[i]=matricula[i];
+                printf("\n|\t%d\t\t|\t%d faltas\t\t|\n", melhores[i],faltas[i]);
+            }
+        }   
+    } else {
+        printf("\n|Nenhum aluno obteve nota maior de 60 com no máximo 5 faltas");
+    }
+    return 0;
+}
+
