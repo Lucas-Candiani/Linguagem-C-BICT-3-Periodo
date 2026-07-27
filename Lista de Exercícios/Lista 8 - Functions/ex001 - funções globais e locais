@@ -1,0 +1,79 @@
+/*
+1. Pesquise e escreva a diferença entre variáveis locais e globais, suas 
+características (vantagens e desvantagens), usos, e implicações no 
+desenvolvimento de programas em linguagem C. 
+a. apresente 3 exemplos distintos de uso de variáveis locais e 
+explique-os 
+b. apresente 3 exemplos distintos de uso de variáveis globais e 
+explique-os
+*/
+#include <stdio.h>
+#include <locale.h>
+
+int main()
+{
+    setlocale(LC_ALL, "Portuguese");
+    
+/* Notas: 
+    Vamos supor que ao trabalhar com uma função qualquer, como:
+===========================================================================   
+    int imprime_dobro()
+    {
+        int y;
+        y= 2*x;
+        printf("O dobro de %d eh %d", x,y);    
+    }
+
+    int main()
+    {
+        int x;
+        printf(" Digite um numero inteiro: ");
+        scanf("%d", &x); 
+        imprime_dobro();
+    }
+===========================================================================
+
+    Note que x é declarado somente na função principal main. Contudo, a função de imprimir o dobro não vai encontrar x. Teremos um erro "undeclared". Para corrigir isso, precisamos fazer com que a variável seja global. Colocando-a antes de tudo :
+
+===========================================================================
+    int x;
+
+    int imprime_dobro()
+    {
+        int y;
+        y= 2*x;
+        printf("O dobro de %d eh %d", x,y);    
+    }
+
+    int main()
+    {
+        printf(" Digite um numero inteiro: ");
+        scanf("%d", &x); 
+        imprime_dobro();
+    }
+
+    A desvantagem desse método é que a variável global pode ser acidentalmente utilizada novamente em outra parte do programa, substituindo o valor e resultando em erros.
+===========================================================================
+
+    Já as locais podem ser utilizadas com um argumento que copia a variável x.
+
+    int imprime_dobro(int z){}
+
+    int main(){
+        int x;
+        ...
+        ...
+        ...
+        imprime_dobro(x); 
+    }
+    
+    O valor de x será copiado para z. 
+
+    A desvantagem dessa forma de utilizar é a criação de outra variável (3 ao todo) para ter mais segurança e evitar erros de substituição acidental. 
+*/
+
+
+
+
+    return 0;
+}
